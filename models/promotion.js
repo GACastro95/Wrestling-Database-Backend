@@ -11,7 +11,6 @@ const PromotionSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    original_id: { type: Number, required: true },
     Name: { type: String, required: true },
     Abbreviation: { type: String, required: true },
     ActiveTime: String,

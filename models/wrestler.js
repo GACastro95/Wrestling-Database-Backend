@@ -6,7 +6,6 @@ const WrestlerSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    original_id: Number,
     Name: { type: String, required: true },
     RingNames: [String],
     Gender: String,
