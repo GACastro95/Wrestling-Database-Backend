@@ -3,9 +3,23 @@ const mongoose = require("mongoose");
 const ReviewSchema = new mongoose.Schema({
   _id: { type: Number, required: true },
   eventId: { type: Number, required: true },
-  matchId: { type: Number, required: true },
-  rating: { type: Number, required: true },
+  matchId: { type: Number },
+  rating: { type: Number },
   review: { type: String },
+  liked: { type: Boolean },
+  watched: { type: Boolean },
+});
+
+const ListSchema = new mongoose.Schema({
+  _id: { type: Number, required: true },
+  name: { type: String, required: true },
+  items: [ListItemSchema],
+});
+
+const ListItemSchema = new mongoose.Schema({
+  eventId: { type: Number, required: true },
+  matchId: { type: Number },
+  order: { type: Number },
 });
 
 const UserSchema = new mongoose.Schema(
@@ -22,6 +36,7 @@ const UserSchema = new mongoose.Schema(
     birthDate: { type: Date },
     createdAt: { type: Date, default: Date.now },
     reviews: [ReviewSchema],
+    lists: [ListSchema],
   },
   { versionKey: false }
 );
