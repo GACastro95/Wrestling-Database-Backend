@@ -10,16 +10,16 @@ const ReviewSchema = new mongoose.Schema({
   watched: { type: Boolean },
 });
 
-const ListSchema = new mongoose.Schema({
-  _id: { type: Number, required: true },
-  name: { type: String, required: true },
-  items: [ListItemSchema],
-});
-
 const ListItemSchema = new mongoose.Schema({
   eventId: { type: Number, required: true },
   matchId: { type: Number },
   order: { type: Number },
+});
+
+const ListSchema = new mongoose.Schema({
+  _id: { type: Number, required: true },
+  name: { type: String, required: true },
+  items: [ListItemSchema],
 });
 
 const UserSchema = new mongoose.Schema(
