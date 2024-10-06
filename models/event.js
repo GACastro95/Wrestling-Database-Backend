@@ -12,7 +12,7 @@ const ParticipantSchema = new mongoose.Schema({
 
 const MatchSchema = new mongoose.Schema({
   _id: { type: Number, required: true },
-  match_type: String,
+  matchType: String,
   participants: [ParticipantSchema],
 });
 
@@ -23,12 +23,12 @@ const EventSchema = new mongoose.Schema(
       required: true,
     },
     Name: { type: String, required: true },
-    Date: String,
-    Promotion: [Number],
-    Location: String,
-    Venue: String,
-    BroadcastDate: String,
-    Card: [MatchSchema],
+    date: String,
+    promotion: [Number],
+    location: String,
+    venue: String,
+    broadcastDate: String,
+    card: [MatchSchema],
   },
   { versionKey: false }
 );

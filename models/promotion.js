@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const NameSchema = new mongoose.Schema({
-  Name: { type: String, required: true },
-  Dates: String,
+  name: { type: String, required: true },
+  dates: String,
 });
 
 const PromotionSchema = new mongoose.Schema(
@@ -11,12 +11,12 @@ const PromotionSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    Name: { type: String, required: true },
-    Abbreviation: { type: String, required: true },
-    ActiveTime: String,
-    Location: String,
-    Names: [NameSchema],
-    Abbreviations: [String],
+    name: { type: String, required: true },
+    abbreviation: { type: String, required: true },
+    activeTime: String,
+    location: String,
+    names: [NameSchema],
+    abbreviations: [String],
   },
   { versionKey: false }
 );
