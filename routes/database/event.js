@@ -1,6 +1,6 @@
 const express = require("express");
-const Event = require("../models/event");
-const { findAvailableId } = require("../utils/dbUtils");
+const Event = require("../../models/event");
+const { findAvailableId } = require("../../utils/dbUtils");
 
 const router = express.Router();
 
