@@ -32,7 +32,10 @@ router.get("/", async (req, res) => {
       .sort({ _id: 1 })
       .limit(Number(limit))
       .skip((page - 1) * limit)
-      .populate({ path: "card.participants.members", model: "Wrestler" })
+      .populate({
+        path: "card.participants.members",
+        model: "Wrestler",
+      })
       .populate({ path: "promotion", model: "Promotion" });
 
     const totalCount = await Event.countDocuments(query);
@@ -50,7 +53,13 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const event = await Event.findById(id);
+    const event = await Event.findById(id)
+      .populate({
+        path: "card.participants.members",
+        model: "Wrestler",
+      })
+      .populate({ path: "promotion", model: "Promotion" });
+
     if (!event) {
       return res.status(404).json({ error: "Event not found" });
     }

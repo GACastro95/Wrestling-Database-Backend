@@ -17,7 +17,7 @@ const EventSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    Name: { type: String, required: true },
+    name: { type: String, required: true },
     date: String,
     promotion: [{ type: Number, ref: "Promotion" }],
     location: String,
