@@ -1,6 +1,6 @@
 const express = require("express");
 const Promotion = require("../../models/promotion");
-const { findAvailableId } = require("../../utils/dbUtils");
+const { getNextSequenceValue } = require("../../utils/dbUtils");
 
 const router = express.Router();
 
@@ -8,11 +8,7 @@ router.post("/", async (req, res) => {
   try {
     const promotionData = req.body;
     if (!promotionData._id || (await Promotion.findById(promotionData._id))) {
-      promotionData._id = await findAvailableId(
-        promotionData._id,
-        "promotionid",
-        Promotion
-      );
+      promotionData._id = await getNextSequenceValue("promotionid");
     }
     const promotion = new Promotion(promotionData);
     await promotion.save();

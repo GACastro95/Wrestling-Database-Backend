@@ -1,6 +1,6 @@
 const express = require("express");
 const Wrestler = require("../../models/wrestler");
-const { findAvailableId } = require("../../utils/dbUtils");
+const { getNextSequenceValue } = require("../../utils/dbUtils");
 
 const router = express.Router();
 
@@ -8,11 +8,7 @@ router.post("/", async (req, res) => {
   try {
     const wrestlerData = req.body;
     if (!wrestlerData._id || (await Wrestler.findById(wrestlerData._id))) {
-      wrestlerData._id = await findAvailableId(
-        wrestlerData._id,
-        "wrestlerid",
-        Wrestler
-      );
+      wrestlerData._id = await getNextSequenceValue("wrestlerid");
     }
     const wrestler = new Wrestler(wrestlerData);
     await wrestler.save();

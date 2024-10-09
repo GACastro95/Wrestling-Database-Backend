@@ -1,6 +1,6 @@
 const express = require("express");
 const User = require("../../models/user");
-const { findAvailableId } = require("../../utils/dbUtils");
+const { getNextSequenceValue } = require("../../utils/dbUtils");
 
 const router = express.Router();
 
@@ -15,7 +15,7 @@ router.post("/:userId/reviews", async (req, res) => {
     }
 
     if (!reviewData._id || user.reviews.id(reviewData._id)) {
-      reviewData._id = await findAvailableId(reviewData._id, "reviewid", User);
+      reviewData._id = await getNextSequenceValue("reviewid");
     }
 
     user.reviews.push(reviewData);

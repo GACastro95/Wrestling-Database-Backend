@@ -1,4 +1,4 @@
-const Counter = require('../models/counter');
+const Counter = require("../models/counter");
 
 async function getNextSequenceValue(sequenceName) {
   const sequenceDocument = await Counter.findByIdAndUpdate(
@@ -9,12 +9,4 @@ async function getNextSequenceValue(sequenceName) {
   return sequenceDocument.seq;
 }
 
-async function findAvailableId(providedId, sequenceName, model) {
-  let id = providedId || (await getNextSequenceValue(sequenceName));
-  while (await model.findById(id)) {
-    id = await getNextSequenceValue(sequenceName);
-  }
-  return id;
-}
-
-module.exports = { getNextSequenceValue, findAvailableId };
+module.exports = { getNextSequenceValue };
