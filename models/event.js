@@ -1,24 +1,11 @@
 const mongoose = require("mongoose");
-
-const ParticipantSchema = new mongoose.Schema({
-  _id: { type: Number, required: true },
-  members: [
-    {
-      _id: { type: Number, required: true },
-      name: { type: String, required: true },
-    },
-  ],
-});
-
-const PromotionSchema = new mongoose.Schema({
-  _id: { type: Number, required: true },
-  name: { type: String, required: true },
-});
+const PromotionSchema = require("./models/promotion");
+const WrestlerSchema = require("./models/wrestler");
 
 const MatchSchema = new mongoose.Schema({
   _id: { type: Number, required: true },
   matchType: String,
-  participants: [ParticipantSchema],
+  participants: [WrestlerSchema],
 });
 
 const EventSchema = new mongoose.Schema(
