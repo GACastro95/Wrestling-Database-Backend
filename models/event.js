@@ -10,6 +10,11 @@ const ParticipantSchema = new mongoose.Schema({
   ],
 });
 
+const PromotionSchema = new mongoose.Schema({
+  _id: { type: Number, required: true },
+  name: { type: String, required: true },
+});
+
 const MatchSchema = new mongoose.Schema({
   _id: { type: Number, required: true },
   matchType: String,
@@ -24,7 +29,7 @@ const EventSchema = new mongoose.Schema(
     },
     Name: { type: String, required: true },
     date: String,
-    promotion: [Number],
+    promotion: [PromotionSchema],
     location: String,
     venue: String,
     broadcastDate: String,
