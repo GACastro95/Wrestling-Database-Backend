@@ -1,11 +1,9 @@
 const mongoose = require("mongoose");
-const PromotionSchema = require("./models/promotion");
-const WrestlerSchema = require("./models/wrestler");
 
 const MatchSchema = new mongoose.Schema({
   _id: { type: Number, required: true },
   matchType: String,
-  participants: [WrestlerSchema],
+  participants: [{ type: Number, ref: "Wrestler" }],
 });
 
 const EventSchema = new mongoose.Schema(
@@ -14,9 +12,9 @@ const EventSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    Name: { type: String, required: true },
+    name: { type: String, required: true },
     date: String,
-    promotion: [PromotionSchema],
+    promotion: [{ type: Number, ref: "Promotion" }],
     location: String,
     venue: String,
     broadcastDate: String,
