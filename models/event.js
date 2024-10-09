@@ -1,9 +1,14 @@
 const mongoose = require("mongoose");
 
+const ParticipantSchema = new mongoose.Schema({
+  _id: { type: Number, required: true },
+  members: [{ type: Number, ref: "Wrestler" }],
+});
+
 const MatchSchema = new mongoose.Schema({
   _id: { type: Number, required: true },
   matchType: String,
-  participants: [{ type: Number, ref: "Wrestler" }],
+  participants: [ParticipantSchema],
 });
 
 const EventSchema = new mongoose.Schema(
@@ -12,7 +17,7 @@ const EventSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    name: { type: String, required: true },
+    Name: { type: String, required: true },
     date: String,
     promotion: [{ type: Number, ref: "Promotion" }],
     location: String,

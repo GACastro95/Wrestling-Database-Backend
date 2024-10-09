@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
       .sort({ _id: 1 })
       .limit(Number(limit))
       .skip((page - 1) * limit)
-      .populate({ path: card.participants, model: "Wrestler" })
+      .populate({ path: "card.participants.members", model: "Wrestler" })
       .populate({ path: "promotion", model: "Promotion" });
 
     const totalCount = await Event.countDocuments(query);
